@@ -1,0 +1,69 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="breadcrumb-div">
+    <div class="container">
+        <h1 class="page-title mb-0">Package Application</h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>Package Application</li>
+        </ol>
+    </div>
+</div>
+
+<div class="div-padding contact-form-div p-t-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                {% if messages %}
+                {% for msg in messages %}
+                    <div class="alert alert-{{ msg.tags }}">{{msg}}</div>
+                {% endfor %}   
+                {% endif %}
+                <form class="mb-4" method="POST">
+                    {% csrf_token %}
+                    <h2>Apply for a Package</h2>
+                    <div class="form-floating">
+                        <input name="name" type="text" class="form-control" id="floatingName" placeholder="Name" required>
+                        <label for="floatingName">Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="contact" type="text" class="form-control" id="floatingPhone" placeholder="Phone" required>
+                        <label for="floatingPhone">Contact</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="location" type="text" class="form-control" id="floatingSubject" placeholder="Location" required>
+                        <label for="floatingSubject">Location</label>
+                    </div>
+                    <div class="form-floating">
+                        <select name="package" type="text" class="form-control" id="floatingSubject" placeholder="Package" required>
+                            <option>Choose Package</option>
+                            {% for package in packages %}
+                            <option>{{ package.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingSubject">Package</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <select name="service" type="text" class="form-control" id="floatingSubject" placeholder="Service" required>
+                            <option>Choose Service</option>
+                            {% for service in services %}
+                            <option>{{ service.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingSubject">Service</label>
+                    </div>
+                    
+                    <button class="w-100 btn btn-lg btn-dark" type="submit">Get Package</button>
+                </form>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+    
+
+{% endblock content %}

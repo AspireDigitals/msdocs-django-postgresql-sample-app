@@ -1,0 +1,164 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+
+<div class="breadcrumb-div">
+    <div class="container">
+        <h1 class="page-title mb-0">Dashboard</h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>My Dashboard</li>
+        </ol>
+    </div>
+</div>
+<div class="div-padding driver-dashboard-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="passanger-name">
+                    <div class="media">
+                        <img class="me-3" src="{{ user_profile.profileimg.url }}" alt="partner-img">
+                        <div class="media-body">
+                            <h2 class="mt-0">{{ user_profile.firstname }} {{ user_profile.lastname }}</h2>
+                            <p>ID:  {{ user_profile.id_user }}</p>
+                            <p>CONTACT:  {{ user_profile.phone }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 right-text">
+                <h2>You are a Cherished Client</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tab-dashboard">
+                    <ul class="nav nav-tabs tab-navigation" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#dashboard" aria-controls="dashboard" class="active" role="tab" data-toggle="tab">Dashboard</a>
+                        </li>
+                        <li role="presentation" class="active">
+                            <a href="#info" aria-controls="info" role="tab" data-toggle="tab">Personal Information</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="dashboard">
+                            <div class="dashboard-info">
+                                <div class="earning-details small-div">
+                                    <h4>Total Errands</h4>
+                                    <div class="total-earning-table table-responsive small-div-item">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">No.</th>
+                                                    <th scope="col">Errands From</th>
+                                                    <th scope="col">Errands To</th>
+                                                    <th scope="col">Date Requested</th>
+                                                    <th scope="col">Errand By</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for errand in errands reversed %}
+                                                     {% if errand.accepted == True %}
+                                                     <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <th scope="row">{{ errand.errandfrom }}</th>
+                                                        <td>{{ errand.errandto }}</td>
+                                                        <td>{{ errand.date_requested }}</td>
+                                                        <td>{{ errand.errandby.name  }}</td>
+                                                        <td>Accepted</td>
+                                                    </tr>
+                  
+                                                    {% elif errand.waiting == True %}
+                                                    <tr>
+                                                       <th scope="row">{{ forloop.counter }}</th>
+                                                       <th scope="row">{{ errand.errandfrom }}</th>
+                                                       <td>{{ errand.errandto }}</td>
+                                                       <td>{{ errand.date_requested }}</td>
+                                                       <td>{{ errand.errandby.name }}</td>
+                                                       <td>Waiting</td>
+                                                   </tr>
+                                                   {% elif errand.onride == True %}
+                                                    <tr>
+                                                       <th scope="row">{{ forloop.counter }}</th>
+                                                       <th scope="row">{{ errand.errandfrom }}</th>
+                                                       <td>{{ errand.errandto }}</td>
+                                                       <td>{{ errand.date_requested }}</td>
+                                                       <td>{{ errand.errandby.name }}</td>
+                                                       <td>To Destination</td>
+                                                   </tr>          
+                                                     {% elif errand.completed == True %}
+                                                     <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <th scope="row">{{ errand.errandfrom }}</th>
+                                                        <td>{{ errand.errandto }}</td>
+                                                        <td>{{ errand.date_requested }}</td>
+                                                        <td>{{ errand.errandby.name }}</td>
+                                                        <td>Completed</td>
+                                                    </tr> 
+                                                    {% else %}
+                                                     <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <th scope="row">{{ errand.errandfrom }}</th>
+                                                        <td>{{ errand.errandto }}</td>
+                                                        <td>{{ errand.date_requested }}</td>
+                                                        <td>{{ errand.errandby.name }}</td>
+                                                        <td>Processing Request</td>
+                                                    </tr>        
+                                                     {% endif %}
+                                                                                          
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="info">
+                            <div class="personal-info small-div">
+                                <div class="div-heading">
+                                    <h4 class="heading-item heading-item-1">Personal Information</h4>
+                                </div>
+                                <div class="personal-details small-div-item">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="inputFirstName">First Name</label>
+                                                <input type="text" class="form-control text-muted" id="inputFirstName" readonly value="{{ user_profile.firstname }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="inputLastName">Last Name</label>
+                                                <input type="text" class="form-control text-muted" id="inputLastName" readonly value="{{ user_profile.lastname }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="inputEmail">Your Email</label>
+                                                <input type="text" class="form-control text-muted" id="inputEmail" readonly value="{{ user.email }}">
+                                            </div>
+                                        </div>
+ 
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="inputPhoneNumber">Your Phone Number</label>
+                                                <input type="text" class="form-control text-muted" id="inputPhoneNumber" readonly value="{{ user_profile.phone }}">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    
+
+{% endblock content %}

@@ -1,0 +1,195 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Soma Ko App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon-16x16.png' %}">
+        <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/plugins/shortcode/shortcode.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/plugins/animate/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/plugins/OwlCarousel/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/plugins/metismenu/css/metismenu.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    </head>
+    <body class="theme-1">
+        <header class="theme-1">
+            <div class="header__upper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 ">
+                            <div class="header__upper--left">
+                                <div class="d-none d-lg-block logo">
+                                    <a href="/"><img src="{% static 'assets/images/logo-main.png' %}" width="122" height="32" alt="Site Logo"></a>
+                                </div>
+                                <div class="d-block d-lg-none logo w-49px">
+                                    <a href="/"><img src="{% static 'assets/images/logo-icon.png' %}" alt="Site Logo"></a>
+                                </div>
+                               
+                                <button type="button" class="nav-toggle-btn a-nav-toggle ms-auto d-block d-lg-none">
+                                    <span class="nav-toggle nav-toggle-sm">
+                                        <span class="stick stick-1"></span>
+                                        <span class="stick stick-2"></span>
+                                        <span class="stick stick-3"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-none d-lg-block col-lg-6">
+                            <div class="header__upper--right">
+                                {% if request.user.is_authenticated %}
+                                <a href="/dashboard/{{ user.username }}" class="button p-3" my-2><i class="far fa-user"></i>{{ user.username }}: Dashboard </a>
+                                <a href="/logout" class="button p-0"><i class="far fa-sign-out"></i> Logout</a>
+                                <a href="/order" class="button p-0"><i class="far fa-user-astronaut"></i> Ride</a>
+                                {% else %}
+                                <a href="/login" class="button p-0"><i class="far fa-signin"></i> Sign In</a>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header__lower">
+                <div class="container">
+                    <div class="row">
+                        <div class="d-none  d-lg-block col-lg-12">
+                            <nav class="navbar navbar-expand-lg navbar-dark">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    {% with request.resolver_match.url_name as url_name %}
+                                    <ul class="navbar-nav me-auto">
+                                        <li class="nav-item {% if url_name == 'index' %}active{% endif %}">
+                                            <a class="nav-link"  role="button" aria-expanded="false" href="/">
+                                                <i class="fas fa-home"></i>Home<span class="sr-only">(current)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item {% if url_name == 'about' %}active{% endif %}">
+                                            <a class="nav-link" href="/about"><i class="fas fa-exclamation-circle"></i>About</a>
+                                        </li>
+                                        <li class="nav-item {% if url_name == 'services' %}active{% endif %}">
+                                            <a class="nav-link" href="/services"><i class="fas fa-cog"></i>Our Services</a>
+                                        </li>
+                                        <li class="nav-item {% if url_name == 'courier' %}active{% endif %}">
+                                            <a class="nav-link" href="/courier"><i class="fas fa-taxi"></i>Our Courier</a>
+                                        </li>
+                                        <li class="nav-item {% if url_name == 'packages' %}active{% endif %}">
+                                            <a class="nav-link" href="/packages"><i class="fas fa-cube"></i>Packages</a>
+                                        </li>
+                                        <li class="nav-item {% if url_name == 'blogs' %}active{% endif %}">
+                                            <a class="nav-link"  href="/blog">
+                                                <i class="fas fa-book-open"></i>Blog<span class="sr-only">(current)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item {% if url_name == 'contact' %}active{% endif %}">
+                                            <a class="nav-link" href="/contact"><i class="fas fa-map-marker-alt"></i>Contact</a>
+                                        </li>
+                                    </ul>
+                                    {% endwith %}
+                                    
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="responsive-menu">
+            <div class="rep-header">
+                <div class="logo">
+                    <a href="/"><img src="{% static 'assets/images/logo-main.png' %}" width="122" height="32" alt="Site Logo"></a>
+                </div>
+                <a href="" title="" class="close-menu"><i class="lni lni-close"></i></a>
+            </div>
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="mobile-menu navbar-nav me-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home"></i>Home<span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-exclamation-circle"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/services"><i class="fas fa-cog"></i>Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="/courier"><i class="fas fa-taxi"></i>Our Courier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/packages"><i class="fas fa-cube"></i>Packages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">
+                            <i class="fas fa-book-open"></i>Blog<span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-map-marker-alt"></i> Contact</a>
+                    </li>
+                </ul>
+                <div class="header__upper--right flex-column">
+                    
+                    {% if request.user.is_authenticated %}
+                    <a href="/dashboard/{{ user.username }}" class="button p-3" my-2><i class="far fa-user"></i>{{ user.username }}: Dashboard </a>
+                    <a href="/logout" class="button p-3" my-2><i class="far fa-sign-out"></i> Logout </a>
+                    {% else %}
+                    <a href="/login" class="button p-3" my-2><i class="far fa-sign-in"></i> Login </a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+       
+
+         {% block content %}
+         
+         {% endblock content %}
+
+
+        <footer class="footer-div theme-1">
+            <div class="copyright-div">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p>&copy; Copyright 2022 | Developed by Tech Dream. All Right Reserved.</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <ul class="social-nav">
+                                <li><a href="#" class="google-p"><i class="fab fa-google-plus-g"></i></a></li>
+                                <li><a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <ul class="social-nav">
+                                <li><a href="/privacy-policy">Privacy</a></li>
+                                <li><a href="/terms">Terms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15885.001781201141!2d-0.705779!3d5.5298168!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf4de4201767f03b9!2sSoma%20Ko%20App!5e0!3m2!1sen!2sgh!4v1669844779173!5m2!1sen!2sgh" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </footer>
+
+        <script data-cfasync="false" src="{% static '/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/common/common.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/OwlCarousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/counterup/waypoints.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/counterup/jquery.counterup.min.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&sensor=true"></script>
+        <script src="{% static 'assets/plugins/gmap3/gmap3.min.js' %}"></script>
+
+        <script src="{% static 'main/js/scripts.js' %}"></script>
+    </body>
+</html>

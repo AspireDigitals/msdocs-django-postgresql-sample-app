@@ -1,0 +1,39 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="breadcrumb-div">
+    <div class="container">
+        <h1 class="page-title mb-0">Our Services</h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>Our Services</li>
+        </ol>
+    </div>
+</div>
+<div class="div-padding our-service-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2 class="div-title text-center">Our Services</h2>
+            </div>
+        </div>
+        <div class="row">
+        {% for service in services %}
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="single-service-item">
+                <img class="service-icon" src="{{ service.image.url}}" alt="service icon">
+                <h4>{{ service.title }}</h4>
+                <p>{{ service.description }}</p>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+</div>
+
+    
+
+{% endblock content %}

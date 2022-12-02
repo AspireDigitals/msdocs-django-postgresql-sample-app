@@ -1,0 +1,56 @@
+{% extends 'main/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="wrapper">
+    <section class="page-content">
+        <div class="container">
+            <div class="page-sec-title text-center">
+                <span>our journal</span>
+            </div>
+    
+            <div class="blog-posts-v10 blog-layout1 row">
+                {% for blog in blogs %}
+
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="post-v10">
+                        <div class="post-thumb">
+                            <img src="{{ blog.image.url }}" alt="" class="w-100">
+                        </div>
+                        <div class="post-info">
+                            <h2><a href="posts/{{ blog.title }}" title="">{{ blog.title }}</a></h2>
+                            <p>{{ blog.overview }}</p>
+                            <span class="posted-on">{{ blog.date_posted }} by {{ blog.posted_by }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+    
+            <div class="mile_pagination">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item prev disabled">
+                            <a class="page-link" href="#" tabindex="-1">Prev</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item next">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+</div>
+
+    
+{% endblock content %}

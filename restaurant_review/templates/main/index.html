@@ -1,0 +1,187 @@
+{% extends 'main/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="hero-area hero-bg-dark-yellow" style="background-image: url('{% static 'assets/images/banner_bg_img.webp' %}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="hero-area-slider" class="hero-area-slider owl-carousel">
+                    {% for slider in sliders %}
+
+                    <div class="single-slider-item p-0">
+                        <div class="hero-area-left">
+                            <h1 class="text-white">{{ slider.title }}</h1>
+                            <p class="text-white">{{ slider.maintitle }}</p>
+                            <a href="/order" class="button button-light big">Book Errand</a>
+                        </div>
+                        <div class="hero-area-right">
+                            <img src="{{ slider.image.url }}" width="805" height="363" alt="">
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="div-padding how-work-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2 class="div-title text-center">How It Works</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 d-none d-lg-block">
+                <div class="icons-div">
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/1.webp' %}" alt="">
+                    </div>
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/2.webp' %}" alt="">
+                    </div>
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/3.webp' %}" alt="">
+                    </div>
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/4.webp' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+           {% for process in processes %}
+
+           <div class="col-lg-3 col-sm-6">
+            <div class="single-icon text-center m-b-10 d-block d-lg-none">
+                <img src="{{ process.image.url }}" alt="">
+            </div>
+            <div class="how-work-text">
+                <h4>{{ process.title }}</h4>
+                <p>{{ process.overview }}</p>
+            </div>
+        </div>
+           
+           {% endfor %}
+            
+        </div>
+    </div>
+</section>
+
+
+<section class="about-us-area bg-2 div-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-us-text">
+                    <h2 class="div-title pb-4 mb-4">Trusted Errand Services <span class="d-block">you can Get</span></h2>
+                    <p>
+                        Soma Ko Errand Services is an online courier service that offers the opportunity for corporate people to experience the services of personal errands.
+                        We serve clients based on request through Phone calls, Online Bookings and/or Personal meet up.</p>
+                    <div class="list-group-flush mb-4">
+                        {% for service in services %}
+
+                        <div class="list-group-item bg-transparent border-bottom-0 p-0">
+                            <p class="mb-0"><i class="fas fa-check-circle mr-4  p-3 grey  rounded-circle " aria-hidden="true"></i>{{ service.title }}</p>
+                        </div>
+                        
+                        {% endfor %}
+                    </div>
+                    <a href="/services" class="button button-dark">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="download-div div-padding p-b-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2 class="div-title text-center">Download Soma Ko App</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="download-qrcode">
+                    <img src="{% static 'assets/images/qr.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="download-text">
+                    <h2>Download the Soma Ko mobile application</h2>
+                    <p>
+                        Our services are carried out with the help of our online platform; which is a mobile application and a web application.
+                        We also make use of Offline messaging such as SMS, MMS and simple Phone calls.
+                    </p>
+                    <p>
+                        After booking for your errand, clients can track the location of the errand and the direction of the errands on the app through an integrated live map on the client dashboard.<br>
+                        Clients also have the opportunity to mark the errand as completed upon delivery of the errands after crosschecking and making sure the errands was as planned.<br>
+                        Client can also send their review based on the performance of  the errands. All errands can be tracked on the client dashboard.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonial-sec  div-padding pb-0 testimonial-area">
+    <div class="container">
+        <div class="testimonial-slider dots-hide">
+            <div class="row">
+                <div class="col-md-12 testimo-slider testimonial-carousel owl-carousel" id="testimonial-test">
+                    {% for testimony in testimonies %}
+
+                    <div class="testimonial-slide">
+                        <p>“{{ testimony.testimony }}”</p>
+                        <div class="thmb-row">
+                             <div class="thmb-img">
+                                <img src="{{ testimony.image.url }}" alt="">
+                             </div>
+                             <div class="thmb-info">
+                                <h3>{{ testimony.name }}</h3>
+                                <span>{{ testimony.position }} of <em>{{ testimony.company }}</em></span>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-content div-padding border-0">
+    <div class="container">
+        <h2 class="div-title text-center">Blog</h2>
+        <div class="blog-posts-v10 blog-layout1 row">
+           {% for post in posts %}
+
+           <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="post-v10">
+                <div class="post-thumb">
+                    <img src="{{ post.image.url }}" alt="" class="w-100">
+                </div>
+                <div class="post-info">
+                    <h2>
+                        <a href="posts/{{ post.title }}" title="">{{ post.title }}</a>
+                    </h2>
+                    <p>{{ post.overview }}</p>
+                    <span class="posted-on">{{ post.date_posted }}, by {{ post.posted_by }}</span>
+                </div>
+            </div>
+        </div>
+           
+           {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

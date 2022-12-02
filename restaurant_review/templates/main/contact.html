@@ -1,0 +1,90 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="breadcrumb-div">
+    <div class="container">
+        <h1 class="page-title mb-0">Contact Us</h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>Contact</li>
+        </ol>
+    </div>
+</div>
+<div class="div-padding contact-info-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="single-contact-info text-center">
+                    <img src="{% static 'assets/images/icon/contact_info.webp' %}" alt="icon">
+                    <h4>Address</h4>
+                    <p>Address : Agona Swedru, Mangoase - Near Roman School.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="single-contact-info text-center">
+                    <img src="{% static 'assets/images/icon/contact_info-2.webp' %}" alt="icon">
+                    <h4>Phone number</h4>
+                    <p>Phone : 0506 618 200</p>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-0 col-sm-6 offset-sm-3">
+                <div class="single-contact-info text-center">
+                    <img src="{% static 'assets/images/icon/contact_info-3.webp' %}" alt="icon">
+                    <h4>E-mail</h4>
+                    <p>Email : somakoapp@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="div-padding contact-form-div p-t-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                {% if messages %}
+                {% for msg in messages %}
+                    <div class="alert alert-{{ msg.tags }}">{{msg}}</div>
+                {% endfor %}   
+                {% endif %}
+                <form class="mb-4" method="POST">
+                    {% csrf_token %}
+                    <h2>Send us an Email</h2>
+                    <div class="form-floating">
+                        <input name="name" type="text" class="form-control" id="floatingName" placeholder="Name">
+                        <label for="floatingName">Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="phone" type="text" class="form-control" id="floatingPhone" placeholder="Phone">
+                        <label for="floatingPhone">Phone</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="subject" type="text" class="form-control" id="floatingSubject" placeholder="Subject">
+                        <label for="floatingSubject">Subject</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea name="content" class="form-control" id="floatingText" placeholder="Text Content" rows="6"></textarea>
+                        <label for="floatingText">Your Content</label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-dark" type="submit">Send</button>
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <div class="contact-us-map">
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15885.001781201141!2d-0.705779!3d5.5298168!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf4de4201767f03b9!2sSoma%20Ko%20App!5e0!3m2!1sen!2sgh!4v1669844779173!5m2!1sen!2sgh" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock content %}

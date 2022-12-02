@@ -1,0 +1,58 @@
+{% extends 'main/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="breadcrumb-div">
+    <div class="container">
+        <h1 class="page-title mb-0">Our Packages</h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>Our Packages</li>
+        </ol>
+    </div>
+</div>
+<div class="div-padding our-pakages-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2 class="div-title text-center">Our Packages</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for package in packages %}
+
+            <div class="col-lg-4 col-md-6">
+                <div class="single-package-item text-center">
+                    <div class="package-icon">
+                        <span class="icon-wrapper">
+                            <img src="{% static 'assets/images/icon/package-icon.webp' %}" alt="icon">
+                        </span>
+                    </div>
+                    <div class="package-details">
+                    <h4 class="div-title text-center">{{ package.title }}</h4>
+                    <p>{{ package.service }}</p>
+                    <h2 class="package-price">${{ package.amount }}<span>/Week</span></h2>
+                    
+                    <ul>
+                        <li>{{ package.benefit1 }}</li>
+                        <li>{{ package.benefit2 }}</li>
+                        <li>{{ package.benefit3 }} </li>
+                        <li>{{ package.benefit4 }}</li>
+                        <li>{{ package.benefit5 }}</li>
+                        <li>{{ package.benefit6 }}</li>
+                    </ul>
+                    <a href="/application" class="button button-dark tiny">Get Now</a>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+    
+
+{% endblock content %}

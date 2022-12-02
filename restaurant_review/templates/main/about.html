@@ -1,0 +1,155 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="breadcrumb-div">
+    <div class="container">
+        <h1 class="page-title mb-0">About Us</h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>About</li>
+        </ol>
+    </div>
+</div>
+<div class="about-us-area div-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-us-text">
+                    <h2 class="div-title pb-4 mb-4">Trusted Errand Services <span class="d-block">you can Get</span></h2>
+                    {% for about in abouts %}
+
+                    <p>{{ about.description | slice:"0:204"}}</p>
+                    <p>{{ about.description | slice:"205:"}}</p>
+                    
+                    {% endfor %}
+                   
+                    <a href="/services" class="button button-dark">Services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="div-padding counter-area">
+    <div class="container">
+        <div class="row text-center">
+            {% for progress in progresses %}
+
+            <div class="col-md-3 col-6">
+                <div class="single-counter">
+                    <div class="counter-icon">
+                        <img src="{{ progress.image.url }}" alt="">
+                    </div>
+                    <h2 class="text-white">
+                        <span class="counter">{{ progress.number}}</span>
+                    </h2>
+                    <p class="counter-text mb-0 text-white">{{ progress.title}}</p>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+        
+<section class="div-padding how-work-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2 class="div-title text-center">How It Works</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 d-none d-lg-block">
+                <div class="icons-div">
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/1.webp' %}" alt="">
+                    </div>
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/2.webp' %}" alt="">
+                    </div>
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/3.webp' %}" alt="">
+                    </div>
+                    <div class="single-icon">
+                        <img src="{% static 'assets/images/icon/4.webp' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+           {% for process in processes %}
+
+           <div class="col-lg-3 col-sm-6">
+            <div class="single-icon text-center m-b-10 d-block d-lg-none">
+                <img src="{{ process.image.url }}" alt="">
+            </div>
+            <div class="how-work-text">
+                <h4>{{ process.title }}</h4>
+                <p>{{ process.overview }}</p>
+            </div>
+        </div>
+           
+           {% endfor %}
+            
+        </div>
+    </div>
+</section>
+
+        
+<section class="testimonial-sec  div-padding pb-0 testimonial-area">
+    <div class="container">
+        <div class="testimonial-slider dots-hide">
+            <div class="row">
+                <div class="col-md-12 testimo-slider testimonial-carousel owl-carousel" id="testimonial-test">
+                    {% for testimony in testimonies %}
+
+                    <div class="testimonial-slide">
+                        <p>“{{ testimony.testimony }}”</p>
+                        <div class="thmb-row">
+                             <div class="thmb-img">
+                                <img src="{{ testimony.image.url }}" alt="">
+                             </div>
+                             <div class="thmb-info">
+                                <h3>{{ testimony.name }}</h3>
+                                <span>{{ testimony.position }} of <em>{{ testimony.company }}</em></span>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="div-padding team-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2 class="div-title text-center">The Team Behind Pick me Up</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for team in teams %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="single-team-member">
+                    <div class="member-img">
+                        <img src="{{ team.image.url }}" alt="">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name mb-1">{{ team.name }}</h4>
+                        <p class="theme-color mb-2">{{ team.position }}</p>
+                        <p class="mb-0">{{ team.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    
+
+{% endblock content %}
